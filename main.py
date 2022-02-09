@@ -2,13 +2,13 @@ from ast import parse
 import backtrader as bt
 import pandas as pd
 import argparse
-from strategies import TestStrategy
+from strategies import TestStrategy, TestStrategy1
 
 def getdata(csvname):
 
     return bt.feeds.YahooFinanceCSVData(dataname=csvname)
 
-def main(csvname, strategy=None, startingcash=10000, commission=None, sizertype='Percent', sizeramt=0.95):
+def main(csvname, strategy=None, startingcash=10000, commission=None, sizertype='Percent', sizeramt=95):
     data = getdata(csvname)
     cerebro = bt.Cerebro()
     cerebro.broker.setcommission(commission=commission) if commission else None
@@ -29,5 +29,5 @@ def main(csvname, strategy=None, startingcash=10000, commission=None, sizertype=
     cerebro.plot()
 
 if __name__ == '__main__':
-   main('AAPL.csv', TestStrategy)
+   main('AAPL.csv', TestStrategy1)
    
